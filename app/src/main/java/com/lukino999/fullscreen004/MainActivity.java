@@ -1,5 +1,6 @@
 package com.lukino999.fullscreen004;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
 
+    public static final int BLUETOOTH_HAS_BEEN_ENABLED = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    //from stackoverflow
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == BLUETOOTH_HAS_BEEN_ENABLED){
+            // It came from our call
+            if(resultCode == Activity.RESULT_OK){
+                // The result was successful
+                afterBluetoothHasBeenEnabled(); // you can use the data returned by the Intent do figure out what to do
+            }
+        }
+    }
+
+    public void afterBluetoothHasBeenEnabled() {
+        if (BA.isEnabled()) {
+            //Toast.makeText(getApplicationContext(), "Bluetooth has been turned on", Toast.LENGTH_SHORT).show();
+            appendToLog("\nBluetooth has been turned on");
+        }
+    }
+
     public void buttonTestBluetoothClick(View view) {
 
         Log.i("BA.isEnabled", String.valueOf(BA.isEnabled()));
@@ -47,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(), "Bluetooth is on", Toast.LENGTH_SHORT).show();
             appendToLog("\nBluetooth is on");
         }   else {
+            appendToLog("\nIntent to turn on bluetooth");
+
+
             Intent i = new Intent(BA.ACTION_REQUEST_ENABLE);
-            startActivity(i);
-            if (BA.isEnabled()) {
-                //Toast.makeText(getApplicationContext(), "Bluetooth has been turned on", Toast.LENGTH_SHORT).show();
-                appendToLog("\nBluetooth has been turned on");
-            }
+            startActivityForResult(i, BLUETOOTH_HAS_BEEN_ENABLED);
+
+
+
+
         }
 
 
