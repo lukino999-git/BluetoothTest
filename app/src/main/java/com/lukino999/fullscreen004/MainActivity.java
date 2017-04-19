@@ -163,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonFindDiscoverableDevicesClick(View view) {
         appendToLog("Click on: Find discoverable devices");
+        Intent i = new Intent(BA.ACTION_REQUEST_DISCOVERABLE);
+        startActivity(i);
     }
 
 
