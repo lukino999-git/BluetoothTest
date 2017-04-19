@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
 
@@ -29,24 +30,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void buttonGetSizeClick(View view) {
+
         RelativeLayout layoutToBeMeasured = (RelativeLayout) findViewById(R.id.mainLayout);
-        String toastText = layoutToBeMeasured.getWidth() + "x" + layoutToBeMeasured.getHeight();
+        String logText = "\n" + layoutToBeMeasured.getWidth() + "x" + layoutToBeMeasured.getHeight();
 
-        Log.i("toastText", toastText);
+        Log.i("toastText", logText);
+        appendToLog(logText);
+        //Toast.makeText(getApplicationContext(), logText, Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
     }
 
     public void buttonTestBluetoothClick(View view) {
 
         Log.i("BA.isEnabled", String.valueOf(BA.isEnabled()));
         if (BA.isEnabled()) {
-            Toast.makeText(getApplicationContext(), "Bluetooth is on", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Bluetooth is on", Toast.LENGTH_SHORT).show();
+            appendToLog("\nBluetooth is on");
         }   else {
             Intent i = new Intent(BA.ACTION_REQUEST_ENABLE);
             startActivity(i);
             if (BA.isEnabled()) {
-                Toast.makeText(getApplicationContext(), "Bluetooth has been turned on", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Bluetooth has been turned on", Toast.LENGTH_SHORT).show();
+                appendToLog("\nBluetooth has been turned on");
             }
         }
 
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         appendToLog(textToAppend);
     }
 
-    public void appendToLog(String textToAppend) {
+    private void appendToLog(String textToAppend) {
         TextView tv = (TextView) findViewById(R.id.textViewLog);
         String textInTextView = (String) tv.getText();
         tv.setText(textInTextView + textToAppend);
