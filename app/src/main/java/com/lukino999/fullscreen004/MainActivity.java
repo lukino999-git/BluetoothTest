@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //from stackoverflow
+    //from stackoverflow: exec code upon activity finishes...
+    //this override makes so that when the intent of enabling the bluetooth returns a positive result, it then calls the afterBluetoothHasBeenEnabled();
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == BLUETOOTH_HAS_BEEN_ENABLED){
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // This gets called from the previous @overrided onActivityResult
     public void afterBluetoothHasBeenEnabled() {
         if (BA.isEnabled()) {
             //Toast.makeText(getApplicationContext(), "Bluetooth has been turned on", Toast.LENGTH_SHORT).show();
