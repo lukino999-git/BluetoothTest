@@ -18,10 +18,6 @@ public class MainActivity extends AppCompatActivity {
     BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textViewLog);
 
         String textInTextView = (String) tv.getText();
-        String textToAppend = "\n" + String.valueOf(Math.random());
+        String textToAppend = "\n" + String.valueOf(Math.random()) + "\n";
         tv.setText(textInTextView + textToAppend);
 
         final ScrollView sv = ((ScrollView) findViewById(R.id.scrollView));
         sv.fullScroll(sv.FOCUS_DOWN);
+        sv.scrollBy(0,1);
 
 
 
