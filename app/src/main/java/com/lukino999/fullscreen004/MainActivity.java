@@ -113,6 +113,20 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(mReceiver);
     }
 
+    private void appendToLog(String textToAppend) {
+        Log.i("appendToLog()", textToAppend);
+        TextView tv = (TextView) findViewById(R.id.textViewLog);
+        String textInTextView = (String) tv.getText();
+        tv.setText(textInTextView + "\n" + sdf.format(new Date()) + ": " + textToAppend);
+        final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView));
+        scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
+    }
+
     // --- On click
     public void buttonTestBluetoothClick(View view) {
 
@@ -147,21 +161,9 @@ public class MainActivity extends AppCompatActivity {
         BA.disable();
     }
 
-    private void appendToLog(String textToAppend) {
-        Log.i("appendToLog()", textToAppend);
-        TextView tv = (TextView) findViewById(R.id.textViewLog);
-        String textInTextView = (String) tv.getText();
-        tv.setText(textInTextView + "\n" + sdf.format(new Date()) + ": " + textToAppend);
-        final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView));
-        scrollview.post(new Runnable() {
-            @Override
-            public void run() {
-                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-            }
-        });
+    public void buttonFindDiscoverableDevicesClick(View view) {
+        appendToLog("Click on: Find discoverable devices");
     }
-
-
 
 
 
