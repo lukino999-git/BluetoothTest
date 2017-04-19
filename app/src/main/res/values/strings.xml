@@ -6,4 +6,5 @@
     <string name="turn_bt_off">Turn Bluotooth off</string>
     <string name="find_discoverable_devices">Find discoverable devices</string>
     <string name="show_paired_devices">Show paired devices</string>
+    <string name="app_name_string">BluetoothTest</string>
 </resources>
