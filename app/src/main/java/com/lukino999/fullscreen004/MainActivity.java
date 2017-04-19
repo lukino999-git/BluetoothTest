@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
         String textToAppend = "\n" + String.valueOf(Math.random());
         tv.setText(textInTextView + textToAppend);
 
+        final ScrollView sv = ((ScrollView) findViewById(R.id.scrollView));
+        sv.fullScroll(sv.FOCUS_DOWN);
+
+
 
 
     }
