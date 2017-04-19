@@ -22,33 +22,45 @@
             style="@android:style/Widget.Button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:onClick="buttonGetSizeClick"
-            android:text="@string/get_size" />
-
-        <Button
-            android:id="@+id/buttonTestBluetooth"
-            style="@android:style/Widget.Button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:text="@string/get_size"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/buttonGetSize"
-            android:onClick="buttonTestBluetoothClick"
-            android:text="@string/test_bluethooth" />
+            android:layout_alignParentStart="true" />
 
         <Button
             android:id="@+id/buttonTestMultilineText"
             style="@android:style/Widget.Button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/buttonTestBluetooth"
             android:onClick="buttonTestMultilineTextClick"
-            android:text="@string/test_multiline_text" />
+            android:text="@string/test_multiline_text"
+            android:layout_below="@+id/buttonGetSize"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/buttonTestBluetooth"
+            style="@android:style/Widget.Button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:onClick="buttonTestBluetoothClick"
+            android:text="@string/test_bluethooth"
+            android:layout_below="@+id/buttonTestMultilineText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <Button
+            android:id="@+id/buttonTurnBluetoothOff"
+            style="@android:style/Widget.Button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:onClick="buttonTurnBluetoothOffClick"
+            android:text="@string/turn_bt_off"
+            android:layout_below="@+id/buttonTestBluetooth"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <ScrollView
             android:id="@+id/scrollView"

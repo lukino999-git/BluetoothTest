@@ -3,4 +3,5 @@
     <string name="get_size">Get size</string>
     <string name="test_bluethooth">Test Bluethooth</string>
     <string name="test_multiline_text">Test multiline text</string>
+    <string name="turn_bt_off">Turn Bluotooth off</string>
 </resources>
