@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lukino999.fullscreen004.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/buttonGetSize"
+            style="@android:style/Widget.Button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:onClick="buttonGetSizeClick"
+            android:text="@string/get_size" />
+
+        <Button
+            android:id="@+id/buttonTestBluetooth"
+            style="@android:style/Widget.Button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/buttonGetSize"
+            android:onClick="buttonTestBluetoothClick"
+            android:text="@string/test_bluethooth" />
+
+        <Button
+            android:id="@+id/buttonTestMultilineText"
+            style="@android:style/Widget.Button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/buttonTestBluetooth"
+            android:onClick="buttonTestMultilineTextClick"
+            android:text="@string/test_multiline_text" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="640dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:scrollbars="vertical"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/textViewLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
