@@ -167,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void buttonShowPairedDevicesClick(View view) {
+        appendToLog("Click on: Show paired devices");
+    }
+
 
 
 }

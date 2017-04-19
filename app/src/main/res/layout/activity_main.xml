@@ -73,6 +73,27 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <Button
+            android:id="@+id/buttonShowPairedDevices"
+            style="@android:style/Widget.Button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:onClick="buttonShowPairedDevicesClick"
+            android:text="Show paired devices"
+            android:layout_below="@+id/buttonFindDiscoverableDevices"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ListView
+            android:id="@+id/pairedDevicesListView"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/buttonGetSize"
+            android:layout_toLeftOf="@+id/scrollView"
+            android:layout_toRightOf="@+id/buttonGetSize"
+            android:layout_toStartOf="@+id/scrollView" />
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="640dp"
