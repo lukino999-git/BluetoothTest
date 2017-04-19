@@ -54,11 +54,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonTestMultilineTextClick(View view) {
+        String textToAppend = "\n" + String.valueOf(Math.random()) + "\n";
+        appendToLog(textToAppend);
+    }
 
-
+    public void appendToLog(String textToAppend) {
         TextView tv = (TextView) findViewById(R.id.textViewLog);
         String textInTextView = (String) tv.getText();
-        String textToAppend = "\n" + String.valueOf(Math.random()) + "\n";
         tv.setText(textInTextView + textToAppend);
         final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView));
         scrollview.post(new Runnable() {
@@ -67,10 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 scrollview.fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
-
-
-
-
     }
 
 
