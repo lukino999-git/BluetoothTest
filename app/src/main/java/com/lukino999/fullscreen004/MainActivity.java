@@ -2,6 +2,7 @@ package com.lukino999.fullscreen004;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,13 +13,17 @@ import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -169,6 +174,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonShowPairedDevicesClick(View view) {
         appendToLog("Click on: Show paired devices");
+
+        Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
+        ListView pairedDevicedListView = (ListView) findViewById(R.id.pairedDevicesListView);
+        ArrayList pairedDevicesArrayList = new ArrayList();
+        for (BluetoothDevice bluetoothDevice : pairedDevices) {
+            pairedDevicesArrayList.add(bluetoothDevice.getName());
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, pairedDevicesArrayList);
+        pairedDevicedListView.setAdapter(arrayAdapter);
+
     }
 
 
