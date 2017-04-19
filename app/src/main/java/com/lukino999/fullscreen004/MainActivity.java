@@ -56,16 +56,17 @@ public class MainActivity extends AppCompatActivity {
     public void buttonTestMultilineTextClick(View view) {
 
 
-        //Log.i("buttonTestMultilineText", "click");
         TextView tv = (TextView) findViewById(R.id.textViewLog);
-
         String textInTextView = (String) tv.getText();
         String textToAppend = "\n" + String.valueOf(Math.random()) + "\n";
         tv.setText(textInTextView + textToAppend);
-
-        final ScrollView sv = ((ScrollView) findViewById(R.id.scrollView));
-        sv.fullScroll(sv.FOCUS_DOWN);
-        sv.scrollBy(0,1);
+        final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView));
+        scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
 
 
 
