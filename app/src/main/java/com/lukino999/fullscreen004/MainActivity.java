@@ -17,11 +17,19 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
 
     public static final int BLUETOOTH_HAS_BEEN_ENABLED = 1001;
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    // String currentDateandTime = sdf.format(new Date());
+
+
 
 
     // from stackoverflow: exec code upon activity finishes...
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public void afterBluetoothHasBeenEnabled() {
         if (BA.isEnabled()) {
             //Toast.makeText(getApplicationContext(), "Bluetooth has been turned on", Toast.LENGTH_SHORT).show();
-            appendToLog("\nBluetooth has been turned on");
+            appendToLog("Bluetooth has been turned on");
         }
     }
 
@@ -63,19 +71,19 @@ public class MainActivity extends AppCompatActivity {
                 switch (state) {
                     case BluetoothAdapter.STATE_OFF:
                         // when STATE_OFF
-                        appendToLog("\nBluetoothAdapter.STATE_OFF");
+                        appendToLog("BluetoothAdapter.STATE_OFF");
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
                         // when STATE_TURNING_OFF
-                        appendToLog("\nBluetoothAdapter.STATE_TURNING_OFF");
+                        appendToLog("BluetoothAdapter.STATE_TURNING_OFF");
                         break;
                     case BluetoothAdapter.STATE_ON:
                         // when STATE_ON
-                        appendToLog("\nBluetoothAdapter.STATE_ON");
+                        appendToLog("BluetoothAdapter.STATE_ON");
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
                         // when STATE_TURNING_ON
-                        appendToLog("\nBluetoothAdapter.STATE_TURNING_ON");
+                        appendToLog("BluetoothAdapter.STATE_TURNING_ON");
                         break;
                 }
             }
@@ -108,44 +116,42 @@ public class MainActivity extends AppCompatActivity {
     // --- On click
     public void buttonTestBluetoothClick(View view) {
 
-        appendToLog("\nClick on: Test Bluetooth");
+        appendToLog("Click on: Test Bluetooth");
         if (BA.isEnabled()) {
             //Toast.makeText(getApplicationContext(), "Bluetooth is on", Toast.LENGTH_SHORT).show();
-            appendToLog("\nBluetooth is on");
+            appendToLog("Bluetooth is on");
         }   else {
-            appendToLog("\nIntent to turn bluetooth ON");
+            appendToLog("Intent to turn bluetooth ON");
             Intent i = new Intent(BA.ACTION_REQUEST_ENABLE);
             startActivityForResult(i, BLUETOOTH_HAS_BEEN_ENABLED);
         }
-
 
     }
 
     public void buttonGetSizeClick(View view) {
 
         RelativeLayout layoutToBeMeasured = (RelativeLayout) findViewById(R.id.mainLayout);
-        String logText = "\n" + layoutToBeMeasured.getWidth() + "x" + layoutToBeMeasured.getHeight();
-
-        Log.i("toastText", logText);
+        String logText = layoutToBeMeasured.getWidth() + "x" + layoutToBeMeasured.getHeight();
         appendToLog(logText);
         //Toast.makeText(getApplicationContext(), logText, Toast.LENGTH_SHORT).show();
 
     }
 
     public void buttonTestMultilineTextClick(View view) {
-        String textToAppend = "\n" + String.valueOf(Math.random()) + "\n";
+        String textToAppend = String.valueOf(Math.random()) + "\n";
         appendToLog(textToAppend);
     }
 
     public void buttonTurnBluetoothOffClick(View view) {
-        appendToLog("\nClick on: Turn bluetooth OFF");
+        appendToLog("Click on: Turn bluetooth OFF");
         BA.disable();
     }
 
     private void appendToLog(String textToAppend) {
+        Log.i("appendToLog()", textToAppend);
         TextView tv = (TextView) findViewById(R.id.textViewLog);
         String textInTextView = (String) tv.getText();
-        tv.setText(textInTextView + textToAppend);
+        tv.setText(textInTextView + "\n" + sdf.format(new Date()) + ": " + textToAppend);
         final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView));
         scrollview.post(new Runnable() {
             @Override
