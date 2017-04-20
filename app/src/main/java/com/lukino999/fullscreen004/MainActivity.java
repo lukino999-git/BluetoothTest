@@ -13,6 +13,7 @@ import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -177,12 +178,20 @@ public class MainActivity extends AppCompatActivity {
 
         Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
         ListView pairedDevicedListView = (ListView) findViewById(R.id.pairedDevicesListView);
-        ArrayList pairedDevicesArrayList = new ArrayList();
+        final ArrayList pairedDevicesArrayList = new ArrayList();
         for (BluetoothDevice bluetoothDevice : pairedDevices) {
             pairedDevicesArrayList.add(bluetoothDevice.getName());
         }
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, pairedDevicesArrayList);
+        final ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, pairedDevicesArrayList);
         pairedDevicedListView.setAdapter(arrayAdapter);
+
+        pairedDevicedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                appendToLog("Click on: pairedDevicesListView");
+                appendToLog("Item clicked: " + (String) pairedDevicesArrayList.get(position));
+            }
+        });
 
     }
 
