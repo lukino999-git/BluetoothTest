@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
 
@@ -173,15 +174,35 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void logBluetoothDeviceInfo(BluetoothDevice bluetoothDevice) {
+        appendToLog(" - - - - - -");
+        appendToLog("Device name: " + bluetoothDevice.getName());
+        appendToLog("getAddress(): " + bluetoothDevice.getAddress());
+        appendToLog("getClass(): " + bluetoothDevice.getClass());
+        appendToLog("toString(): " + bluetoothDevice.toString());
+        appendToLog("getBluetoothClass(): " + bluetoothDevice.getBluetoothClass());
+        appendToLog("getUuids():\n" + Arrays.toString(bluetoothDevice.getUuids()));
+
+
+    }
+
     public void buttonShowPairedDevicesClick(View view) {
         appendToLog("Click on: Show paired devices");
 
         Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
         ListView pairedDevicedListView = (ListView) findViewById(R.id.pairedDevicesListView);
         final ArrayList pairedDevicesArrayList = new ArrayList();
+
+        appendToLog("For loop to add to array from set PairedDevices");
         for (BluetoothDevice bluetoothDevice : pairedDevices) {
             pairedDevicesArrayList.add(bluetoothDevice.getName());
+            logBluetoothDeviceInfo(bluetoothDevice);
+
         }
+
+
+
+
         final ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, pairedDevicesArrayList);
         pairedDevicedListView.setAdapter(arrayAdapter);
 
@@ -189,7 +210,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 appendToLog("Click on: pairedDevicesListView");
-                appendToLog("Item clicked: " + (String) pairedDevicesArrayList.get(position));
+
+                String itemClickedName = (String) pairedDevicesArrayList.get(position);
+                appendToLog("Item clicked: " + itemClickedName);
+
+
+
+
             }
         });
 
